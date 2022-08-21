@@ -1,0 +1,46 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+  string s, str = "";
+  getline(cin, s);
+  int count_points = 0;
+  int count = 0;
+  for (auto c : s) {
+      if (c == '.') {
+          count_points += 1;
+      } else if (c < '0' || c > '9') {
+          cout << "NO";
+          return 0;
+      }
+  }
+  if (count_points != 3) {
+      cout << "NO";
+      return 0;
+  } else {
+      if (s.size() < 7 || s.size() > 15 || s.find("..") != - 1 || s[s.size() - 1] == '.' || s[0] == '.') {
+          cout << "NO";
+          return 0;
+      } else {
+          for (int i = 0; i < s.size(); i++) {
+              if (s[i] != '.') {
+                  str = str + s[i];
+              } else {
+                  if (stoi(str) < 0 || stoi(str) > 255) {
+                      cout << "NO";
+                      return 0;
+                  } else {
+                      str = "";    
+                  }
+              }
+          }
+          if (stoi(str) < 0 || stoi(str) > 255) {
+              cout << "NO";
+              return 0;
+          }
+      }
+  }
+  cout << "YES";
+  return 0;
+}
