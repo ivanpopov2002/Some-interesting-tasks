@@ -24,7 +24,7 @@ def check(m, K, stalls):
 N, K = (int(i) for i in input().split())
 stalls = list(map(int, input().split()))
 
-l = stalls[0]
+l = 0
 r = stalls[-1]
 
 while l < r:
