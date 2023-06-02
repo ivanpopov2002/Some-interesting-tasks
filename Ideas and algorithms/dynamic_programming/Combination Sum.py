@@ -15,17 +15,16 @@ candidates = list(map(int, input().split()))
 target = int(input())
 
 dp = [[] for i in range(target + 1)]
+
 for c in candidates:
-    comb = [c]
     for i in range(target + 1):
-        if sum(comb) > i:
+        if c > i:
             continue
-        elif sum(comb) == i:
-            dp[i].append(comb.copy())
+        elif c == i:
+            dp[i].append([c])
         else:
-            current = i - sum(comb)
-            if dp[current] != []:
-                for lst in dp[current]:
-                    cur = comb + lst
-                    dp[i].append(cur.copy())
+            current = i - c
+            for lst in dp[current]:
+                cur = [c] + lst
+                dp[i].append(cur.copy())
 print(dp[target])
